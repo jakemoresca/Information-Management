@@ -1,0 +1,12 @@
+{
+  "name": "myproject",
+  "version": "1.0.0",
+  "devDependencies": {
+    "react": "15.5.4",
+    "react-router": "4.1.1",
+    "requirejs": "2.3.3",
+    "requirejs-babel": "0.0.9",
+    "gulp": "3.9.1",
+    "gulp-babel": "^6.1.2"
+  }
+}
