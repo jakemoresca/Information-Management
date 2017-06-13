@@ -2,11 +2,17 @@
   "name": "myproject",
   "version": "1.0.0",
   "devDependencies": {
+    "babel-standalone": "6.25.0",
+    "babel-preset-env": "1.5.2",
     "react": "15.5.4",
+    "react-dom": "15.5.4",
     "react-router": "4.1.1",
     "requirejs": "2.3.3",
     "requirejs-babel": "0.0.9",
     "gulp": "3.9.1",
-    "gulp-babel": "^6.1.2"
+    "gulp-babel": "^6.1.2",
+    "gulp-sourcemaps": "2.6.0",
+    "babel-preset-es2016": "6.24.1",
+    "babel-preset-react": "6.24.1"
   }
 }

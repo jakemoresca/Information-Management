@@ -19,8 +19,7 @@ namespace Moresca.IM.Web
 
             bundles.Add(new ScriptBundle("~/bundles/react").Include(
                 "~/Scripts/react/react.js",
-                "~/Scripts/react/react-dom.js",
-                "~/Scripts/babel/browser.js"));
+                "~/Scripts/react-dom/react-dom.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/require").Include(
                 "~/Scripts/requirejs/requirejs.js"));

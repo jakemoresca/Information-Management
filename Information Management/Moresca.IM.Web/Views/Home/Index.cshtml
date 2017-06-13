@@ -1,17 +1,12 @@
 ﻿<div id="root" class="site-wrapper">
 </div>
-@*<script type="text/javascript">
+<script type="text/javascript">
     require.config(
     {
-        baseUrl: 'Scripts/app/',
-        paths:
-        {
-            es6: "../requirejs-babel/es6",
-            babel: "../requirejs-babel/babel-5.8.34.min",
-            react: "../reactjs/react",
-            reactDom: "../reactjs/react-dom"
-        }
+        'baseUrl': './Scripts/dist/app/'
     });
-    require(["es6!app"]);
-</script>*@
-<script type="text/babel" src="~/Scripts/app/app.jsx"></script>
+
+    require(["app"], function (appInit) {
+        
+    });
+</script>
