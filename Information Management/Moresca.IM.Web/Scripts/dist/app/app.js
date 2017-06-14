@@ -8,91 +8,186 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//import Footer from './components/footer';
+require(["reactRouterDom"], function (RouterDOM) {
+    window.Router = RouterDOM.BrowserRouter;
+    window.Link = RouterDOM.Link;
+    window.Route = RouterDOM.Route;
 
-define(['components/footer'], function (Footer) {
-    var App = function (_React$Component) {
-        _inherits(App, _React$Component);
-
-        function App() {
-            _classCallCheck(this, App);
-
-            return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-        }
-
-        _createClass(App, [{
-            key: "render",
-            value: function render() {
-                return React.createElement(
-                    "div",
-                    { className: "site-wrapper-inner" },
+    require(["react", "reactDOM", "./components/footer"], function (React, ReactDOM, Footer) {
+        var Home = function Home() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "h1",
+                    { className: "cover-heading" },
+                    "Cover your page."
+                ),
+                React.createElement(
+                    "p",
+                    { className: "lead" },
+                    "Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own."
+                ),
+                React.createElement(
+                    "p",
+                    { className: "lead" },
                     React.createElement(
-                        "div",
-                        { className: "cover-container" },
+                        "a",
+                        { href: "#", className: "btn btn-lg btn-secondary" },
+                        "Learn more"
+                    )
+                )
+            );
+        };
+
+        var About = function About() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "h2",
+                    null,
+                    "About"
+                )
+            );
+        };
+
+        var Topics = function Topics(_ref) {
+            var match = _ref.match;
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "h2",
+                    null,
+                    "Topics"
+                ),
+                React.createElement(
+                    "ul",
+                    null,
+                    React.createElement(
+                        "li",
+                        null,
                         React.createElement(
-                            "div",
-                            { className: "masthead clearfix" },
+                            Link,
+                            { to: match.url + "/rendering" },
+                            "Rendering with React"
+                        )
+                    ),
+                    React.createElement(
+                        "li",
+                        null,
+                        React.createElement(
+                            Link,
+                            { to: match.url + "/components" },
+                            "Components"
+                        )
+                    ),
+                    React.createElement(
+                        "li",
+                        null,
+                        React.createElement(
+                            Link,
+                            { to: match.url + "/props-v-state" },
+                            "Props v. State"
+                        )
+                    )
+                ),
+                React.createElement(Route, { path: match.url + "/:topicId", component: Topic }),
+                React.createElement(Route, { exact: true, path: match.url, render: function render() {
+                        return React.createElement(
+                            "h3",
+                            null,
+                            "Please select a topic."
+                        );
+                    } })
+            );
+        };
+
+        var Topic = function Topic(_ref2) {
+            var match = _ref2.match;
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "h3",
+                    null,
+                    match.params.topicId
+                )
+            );
+        };
+
+        var App = function (_React$Component) {
+            _inherits(App, _React$Component);
+
+            function App() {
+                _classCallCheck(this, App);
+
+                return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+            }
+
+            _createClass(App, [{
+                key: "render",
+                value: function render() {
+                    return React.createElement(
+                        "div",
+                        { className: "site-wrapper-inner" },
+                        React.createElement(
+                            Router,
+                            null,
                             React.createElement(
                                 "div",
-                                { className: "inner" },
+                                { className: "cover-container" },
                                 React.createElement(
-                                    "h3",
-                                    { className: "masthead-brand" },
-                                    "Cover"
+                                    "div",
+                                    { className: "masthead clearfix" },
+                                    React.createElement(
+                                        "div",
+                                        { className: "inner" },
+                                        React.createElement(
+                                            "h3",
+                                            { className: "masthead-brand" },
+                                            "Cover"
+                                        ),
+                                        React.createElement(
+                                            "nav",
+                                            { className: "nav nav-masthead" },
+                                            React.createElement(
+                                                Link,
+                                                { className: "nav-link active", to: "/" },
+                                                "Home"
+                                            ),
+                                            React.createElement(
+                                                Link,
+                                                { className: "nav-link", to: "/about" },
+                                                "About"
+                                            ),
+                                            React.createElement(
+                                                Link,
+                                                { className: "nav-link", to: "/topics" },
+                                                "Topics"
+                                            )
+                                        )
+                                    )
                                 ),
                                 React.createElement(
-                                    "nav",
-                                    { className: "nav nav-masthead" },
-                                    React.createElement(
-                                        "a",
-                                        { className: "nav-link active", href: "#" },
-                                        "Home"
-                                    ),
-                                    React.createElement(
-                                        "a",
-                                        { className: "nav-link", href: "#" },
-                                        "Features"
-                                    ),
-                                    React.createElement(
-                                        "a",
-                                        { className: "nav-link", href: "#" },
-                                        "Contact"
-                                    )
-                                )
+                                    "div",
+                                    { className: "inner cover" },
+                                    React.createElement(Route, { exact: true, path: "/", component: Home }),
+                                    React.createElement(Route, { path: "/about", component: About }),
+                                    React.createElement(Route, { path: "/topics", component: Topics })
+                                ),
+                                React.createElement(Footer, null)
                             )
-                        ),
-                        React.createElement(
-                            "div",
-                            { className: "inner cover" },
-                            React.createElement(
-                                "h1",
-                                { className: "cover-heading" },
-                                "Cover your page."
-                            ),
-                            React.createElement(
-                                "p",
-                                { className: "lead" },
-                                "Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own."
-                            ),
-                            React.createElement(
-                                "p",
-                                { className: "lead" },
-                                React.createElement(
-                                    "a",
-                                    { href: "#", className: "btn btn-lg btn-secondary" },
-                                    "Learn more"
-                                )
-                            )
-                        ),
-                        React.createElement(Footer, null)
-                    )
-                );
-            }
-        }]);
+                        )
+                    );
+                }
+            }]);
 
-        return App;
-    }(React.Component);
+            return App;
+        }(React.Component);
 
-    ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
+        ReactDOM.render(React.createElement(App, null), document.getElementById('root'));
+    });
 });
 //# sourceMappingURL=app.js.map

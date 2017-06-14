@@ -1,13 +1,22 @@
-﻿export default class Footer extends React.Component
+﻿define(["react", "reactDOM"],
+function (React, ReactDOM)
 {
-    render()
+    return class Footer extends React.Component
     {
-        return (
-            <div className="mastfoot">
-                <div className="inner">
-                    <p>Cover template for <a href="https://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo"></a>.</p>
+        constructor()
+        {
+            super();
+        }
+
+        render()
+        {
+            return (
+                <div className="mastfoot">
+                    <div className="inner">
+                        <p>Cover template for <a href="https://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo"></a>.</p>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
-}
+});

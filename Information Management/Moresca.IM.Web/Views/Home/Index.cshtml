@@ -3,7 +3,13 @@
 <script type="text/javascript">
     require.config(
     {
-        'baseUrl': './Scripts/dist/app/'
+        'baseUrl': './Scripts/dist/app/',
+        paths:
+        {
+            "react": "../../react/react",
+            "reactDOM": "../../react-dom/react-dom",
+            "reactRouterDom": "../../react-router-dom/react-router-dom"
+        }
     });
 
     require(["app"], function (appInit) {

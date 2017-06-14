@@ -17,7 +17,8 @@ var npm = {
     "babel": "babel-standalone/**/*.js",
     "react": "react/dist/**/*.js",
     "react-dom": "react-dom/dist/**/*.js",
-    "react-router": "react-router/es/**/*.js",
+    "react-router": "react-router/umd/**/*.js",
+    "react-router-dom": "react-router-dom/umd/**/*.js",
     "requirejs": "requirejs/**/*.js",
     "requirejs-babel": "requirejs-babel/**/*.js"
 }

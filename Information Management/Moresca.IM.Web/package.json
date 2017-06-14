@@ -7,6 +7,8 @@
     "react": "15.5.4",
     "react-dom": "15.5.4",
     "react-router": "4.1.1",
+    "react-router-dom": "4.1.1",
+    "react-router-history": "1.0.5",
     "requirejs": "2.3.3",
     "requirejs-babel": "0.0.9",
     "gulp": "3.9.1",
