@@ -8,28 +8,32 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-define(["react", "reactDOM", "./datatables/data-table"], function (React, ReactDOM, DataTable) {
+define(["react", "reactDOM", "./data-table-row"], function (React, ReactDOM, DataTableRow) {
     return function (_React$Component) {
-        _inherits(Home, _React$Component);
+        _inherits(DataTableRowList, _React$Component);
 
-        function Home() {
-            _classCallCheck(this, Home);
+        function DataTableRowList() {
+            _classCallCheck(this, DataTableRowList);
 
-            return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this));
+            return _possibleConstructorReturn(this, (DataTableRowList.__proto__ || Object.getPrototypeOf(DataTableRowList)).call(this));
         }
 
-        _createClass(Home, [{
+        _createClass(DataTableRowList, [{
             key: "render",
             value: function render() {
-                var recordList = [{ id: 1, firstName: "Mark", lastName: "Otto", userName: "@mdo" }, { id: 2, firstName: "Jacob", lastName: "Thornton", userName: "@fat" }, { id: 3, firstName: "Larry", lastName: "the Bird", userName: "@twitter" }];
+                var recordList = this.props.recordList;
 
-                var headerList = ["Id", "First Name", "Last Name", "Username"];
-
-                return React.createElement(DataTable, { recordList: recordList, headerList: headerList });
+                return React.createElement(
+                    "tbody",
+                    null,
+                    recordList.map(function (record) {
+                        return React.createElement(DataTableRow, { record: record });
+                    })
+                );
             }
         }]);
 
-        return Home;
+        return DataTableRowList;
     }(React.Component);
 });
-//# sourceMappingURL=home.js.map
+//# sourceMappingURL=data-table-row-list.js.map

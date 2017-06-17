@@ -51,7 +51,7 @@ require(["reactRouterDom"], function (RouterDOM) {
                                             { className: "nav nav-masthead" },
                                             React.createElement(
                                                 Link,
-                                                { className: "nav-link active", to: "" },
+                                                { className: "nav-link active", to: "/" },
                                                 "Home"
                                             ),
                                             React.createElement(
@@ -70,7 +70,7 @@ require(["reactRouterDom"], function (RouterDOM) {
                                 React.createElement(
                                     "div",
                                     { className: "inner cover" },
-                                    React.createElement(Route, { strict: true, path: "", component: Home }),
+                                    React.createElement(Route, { strict: true, path: "/", component: Home }),
                                     React.createElement(Route, { path: "/about", component: About }),
                                     React.createElement(Route, { path: "/topics", component: Topics })
                                 ),

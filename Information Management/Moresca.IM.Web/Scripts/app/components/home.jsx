@@ -1,5 +1,5 @@
-﻿define(["react", "reactDOM"],
-function (React, ReactDOM)
+﻿define(["react", "reactDOM", "./datatables/data-table"],
+function (React, ReactDOM, DataTable)
 {
     return class Home extends React.Component
     {
@@ -10,14 +10,17 @@ function (React, ReactDOM)
 
         render()
         {
+            const recordList =
+                [
+                    { id: 1, firstName: "Mark", lastName: "Otto", userName: "@mdo" },
+                    { id: 2, firstName: "Jacob", lastName: "Thornton", userName: "@fat" },
+                    { id: 3, firstName: "Larry", lastName: "the Bird", userName: "@twitter" }
+                ];
+
+            const headerList = ["Id", "First Name", "Last Name", "Username"];
+
             return (
-                <div>
-                    <h1 className="cover-heading">Cover your page.</h1>
-                    <p className="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-                    <p className="lead">
-                        <a href="#" className="btn btn-lg btn-secondary">Learn more</a>
-                    </p>
-                </div>
+                <DataTable recordList={recordList} headerList={headerList} />
             );
         }
     }
