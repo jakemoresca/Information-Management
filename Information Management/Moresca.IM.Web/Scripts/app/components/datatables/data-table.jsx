@@ -11,18 +11,18 @@ function (React, ReactDOM, DataTableRowList)
         render()
         {
             const recordList = this.props.recordList;
-            const headerList = this.props.headerList;
+            const fieldList = this.props.fieldList;
 
             return (
                 <table className="table table-hover">
                     <thead>
                         <tr>
-                            {headerList.map((header) =>
-                                <th>{header}</th>
+                            {fieldList.map((field) =>
+                                <th key={field.name}>{field.value}</th>
                             )}
                         </tr>
                     </thead>
-                    <DataTableRowList recordList={recordList} />
+                    <DataTableRowList recordList={recordList} fieldList={fieldList} />
                 </table>
             );
         }

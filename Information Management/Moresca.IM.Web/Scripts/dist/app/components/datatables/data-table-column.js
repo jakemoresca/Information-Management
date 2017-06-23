@@ -8,33 +8,36 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-define(["react", "reactDOM", "./data-table-column"], function (React, ReactDOM, DataTableColumn) {
+define(["react", "reactDOM"], function (React, ReactDOM) {
     return function (_React$Component) {
-        _inherits(DataTableRow, _React$Component);
+        _inherits(DataTableColumn, _React$Component);
 
-        function DataTableRow() {
-            _classCallCheck(this, DataTableRow);
+        function DataTableColumn() {
+            _classCallCheck(this, DataTableColumn);
 
-            return _possibleConstructorReturn(this, (DataTableRow.__proto__ || Object.getPrototypeOf(DataTableRow)).call(this));
+            return _possibleConstructorReturn(this, (DataTableColumn.__proto__ || Object.getPrototypeOf(DataTableColumn)).call(this));
         }
 
-        _createClass(DataTableRow, [{
+        _createClass(DataTableColumn, [{
             key: "render",
             value: function render() {
                 var record = this.props.record;
-                var fieldList = this.props.fieldList;
+                var field = this.props.field;
+                var isFirstColumn = this.props.isFirstColumn;
 
-                return React.createElement(
-                    "tr",
+                return isFirstColumn ? React.createElement(
+                    "th",
+                    { scope: "row" },
+                    record[field]
+                ) : React.createElement(
+                    "td",
                     null,
-                    fieldList.map(function (field, index) {
-                        return React.createElement(DataTableColumn, { key: field.name, record: record, field: field.name, isFirstColumn: index == 0 });
-                    })
+                    record[field]
                 );
             }
         }]);
 
-        return DataTableRow;
+        return DataTableColumn;
     }(React.Component);
 });
-//# sourceMappingURL=data-table-row.js.map
+//# sourceMappingURL=data-table-column.js.map

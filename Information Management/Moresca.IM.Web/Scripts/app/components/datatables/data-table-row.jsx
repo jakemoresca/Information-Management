@@ -1,5 +1,5 @@
-﻿define(["react", "reactDOM"],
-function (React, ReactDOM)
+﻿define(["react", "reactDOM", "./data-table-column"],
+function (React, ReactDOM, DataTableColumn)
 {
     return class DataTableRow extends React.Component
     {
@@ -11,13 +11,13 @@ function (React, ReactDOM)
         render()
         {
             const record = this.props.record;
+            const fieldList = this.props.fieldList;
 
             return (
                 <tr>
-                    <th scope="row">{record.id}</th>
-                    <td>{record.firstName}</td>
-                    <td>{record.lastName}</td>
-                    <td>{record.userName}</td>
+                    {fieldList.map((field, index) =>
+                        <DataTableColumn key={field.name} record={record} field={field.name} isFirstColumn={index == 0} />
+                    )}
                 </tr>
             );
         }

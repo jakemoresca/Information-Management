@@ -17,10 +17,16 @@ function (React, ReactDOM, DataTable)
                     { id: 3, firstName: "Larry", lastName: "the Bird", userName: "@twitter" }
                 ];
 
-            const headerList = ["Id", "First Name", "Last Name", "Username"];
+            const fieldList =
+                [
+                    { name: "id", value: "Id" },
+                    { name: "firstName", value: "First Name" },
+                    { name: "lastName", value: "Last Name" },
+                    { name: "userName", value: "Username" }
+                ];
 
             return (
-                <DataTable recordList={recordList} headerList={headerList} />
+                <DataTable recordList={recordList} fieldList={fieldList} />
             );
         }
     }

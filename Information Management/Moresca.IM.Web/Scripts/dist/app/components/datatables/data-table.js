@@ -22,7 +22,7 @@ define(["react", "reactDOM", "./data-table-row-list"], function (React, ReactDOM
             key: "render",
             value: function render() {
                 var recordList = this.props.recordList;
-                var headerList = this.props.headerList;
+                var fieldList = this.props.fieldList;
 
                 return React.createElement(
                     "table",
@@ -33,16 +33,16 @@ define(["react", "reactDOM", "./data-table-row-list"], function (React, ReactDOM
                         React.createElement(
                             "tr",
                             null,
-                            headerList.map(function (header) {
+                            fieldList.map(function (field) {
                                 return React.createElement(
                                     "th",
-                                    null,
-                                    header
+                                    { key: field.name },
+                                    field.value
                                 );
                             })
                         )
                     ),
-                    React.createElement(DataTableRowList, { recordList: recordList })
+                    React.createElement(DataTableRowList, { recordList: recordList, fieldList: fieldList })
                 );
             }
         }]);

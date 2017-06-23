@@ -23,9 +23,9 @@ define(["react", "reactDOM", "./datatables/data-table"], function (React, ReactD
             value: function render() {
                 var recordList = [{ id: 1, firstName: "Mark", lastName: "Otto", userName: "@mdo" }, { id: 2, firstName: "Jacob", lastName: "Thornton", userName: "@fat" }, { id: 3, firstName: "Larry", lastName: "the Bird", userName: "@twitter" }];
 
-                var headerList = ["Id", "First Name", "Last Name", "Username"];
+                var fieldList = [{ name: "id", value: "Id" }, { name: "firstName", value: "First Name" }, { name: "lastName", value: "Last Name" }, { name: "userName", value: "Username" }];
 
-                return React.createElement(DataTable, { recordList: recordList, headerList: headerList });
+                return React.createElement(DataTable, { recordList: recordList, fieldList: fieldList });
             }
         }]);
 

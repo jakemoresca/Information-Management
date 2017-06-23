@@ -11,11 +11,12 @@ function (React, ReactDOM, DataTableRow)
         render()
         {
             const recordList = this.props.recordList;
+            const fieldList = this.props.fieldList;
 
             return (
                 <tbody>
                     {recordList.map((record) =>
-                        <DataTableRow record={record} />
+                        <DataTableRow key={record.id} record={record} fieldList={fieldList} />
                     )}
                 </tbody>
             );
