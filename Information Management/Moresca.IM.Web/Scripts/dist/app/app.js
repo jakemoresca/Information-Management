@@ -27,54 +27,76 @@ require(["reactRouterDom"], function (RouterDOM) {
                 key: "render",
                 value: function render() {
                     return React.createElement(
-                        "div",
-                        { className: "site-wrapper-inner" },
+                        Router,
+                        null,
                         React.createElement(
-                            Router,
+                            "div",
                             null,
                             React.createElement(
-                                "div",
-                                { className: "cover-container" },
+                                "nav",
+                                { className: "navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top" },
+                                React.createElement(
+                                    "button",
+                                    { className: "navbar-toggler navbar-toggler-right", type: "button", "data-toggle": "collapse", "data-target": "#navbarsExampleDefault", "aria-controls": "navbarsExampleDefault", "aria-expanded": "false", "aria-label": "Toggle navigation" },
+                                    React.createElement("span", { className: "navbar-toggler-icon" })
+                                ),
+                                React.createElement(
+                                    "a",
+                                    { className: "navbar-brand", href: "#" },
+                                    "Information Management"
+                                ),
                                 React.createElement(
                                     "div",
-                                    { className: "masthead clearfix" },
+                                    { className: "collapse navbar-collapse", id: "navbarsExampleDefault" },
                                     React.createElement(
-                                        "div",
-                                        { className: "inner" },
+                                        "ul",
+                                        { className: "navbar-nav mr-auto" },
                                         React.createElement(
-                                            "h3",
-                                            { className: "masthead-brand" },
-                                            "Cover"
-                                        ),
-                                        React.createElement(
-                                            "nav",
-                                            { className: "nav nav-masthead" },
+                                            "li",
+                                            { className: "nav-item active" },
                                             React.createElement(
                                                 Link,
                                                 { className: "nav-link active", to: "/" },
                                                 "Home"
-                                            ),
+                                            )
+                                        ),
+                                        React.createElement(
+                                            "li",
+                                            { className: "nav-item" },
                                             React.createElement(
                                                 Link,
                                                 { className: "nav-link", to: "/about" },
                                                 "About"
-                                            ),
+                                            )
+                                        ),
+                                        React.createElement(
+                                            "li",
+                                            { className: "nav-item" },
                                             React.createElement(
                                                 Link,
                                                 { className: "nav-link", to: "/topics" },
                                                 "Topics"
                                             )
                                         )
+                                    ),
+                                    React.createElement(
+                                        "form",
+                                        { className: "form-inline my-2 my-lg-0" },
+                                        React.createElement("input", { className: "form-control mr-sm-2", placeholder: "Search", type: "text" }),
+                                        React.createElement(
+                                            "button",
+                                            { className: "btn btn-outline-success my-2 my-sm-0", type: "submit" },
+                                            "Search"
+                                        )
                                     )
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "inner cover" },
-                                    React.createElement(Route, { strict: true, path: "/", component: Home }),
-                                    React.createElement(Route, { path: "/about", component: About }),
-                                    React.createElement(Route, { path: "/topics", component: Topics })
-                                ),
-                                React.createElement(Footer, null)
+                                )
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "container" },
+                                React.createElement(Route, { strict: true, path: "/", component: Home }),
+                                React.createElement(Route, { path: "/about", component: About }),
+                                React.createElement(Route, { path: "/topics", component: Topics })
                             )
                         )
                     );
