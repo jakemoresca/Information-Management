@@ -11,13 +11,15 @@ function (React, ReactDOM)
         render()
         {
             const text = this.props.text;
-            const buttonType = this.props.buttonType;
             const action = this.props.action;
+            const additionalClass = this.props.additionalClass;
 
-            const buttonTypeClassName = buttonType != null ? "btn btn-" + buttonType : "btn";
+            const cssClass = "mdc-button mdc-button--raised mdc-button--primary" + (additionalClass == undefined ? "" : " " + additionalClass);
 
             return (
-                <a className={buttonTypeClassName} href="#" role="button" onClick={action}>{text}</a>
+                <button className={cssClass} data-mdc-auto-init="MDCRipple" onClick={action}>
+                    {text}
+                </button>
             );
         }
     }

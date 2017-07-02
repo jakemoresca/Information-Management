@@ -1,0 +1,20 @@
+﻿.mdc-list-container
+{
+    margin-top: 100px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.container 
+{
+    align-content: center;
+}
+
+.float-right
+{
+    float: right;
+}
+
+.multiple-end-detail
+{
+    width: auto;
+}

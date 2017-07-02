@@ -8,7 +8,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-define(["react", "reactDOM", "./data-table-column"], function (React, ReactDOM, DataTableColumn) {
+define(["react", "reactDOM"], function (React, ReactDOM) {
     return function (_React$Component) {
         _inherits(DataTableRow, _React$Component);
 
@@ -22,14 +22,48 @@ define(["react", "reactDOM", "./data-table-column"], function (React, ReactDOM, 
             key: "render",
             value: function render() {
                 var record = this.props.record;
-                var fieldList = this.props.fieldList;
 
                 return React.createElement(
-                    "tr",
-                    null,
-                    fieldList.map(function (field, index) {
-                        return React.createElement(DataTableColumn, { key: field.name, record: record, field: field.name, isFirstColumn: index == 0 });
-                    })
+                    "a",
+                    { href: "#", className: "mdc-list-item", "data-mdc-auto-init": "MDCRipple" },
+                    React.createElement(
+                        "span",
+                        { className: "mdc-list-item__start-detail grey-bg", role: "presentation" },
+                        React.createElement(
+                            "i",
+                            { className: "material-icons", "aria-hidden": "true" },
+                            "description"
+                        )
+                    ),
+                    React.createElement(
+                        "span",
+                        { className: "mdc-list-item__text" },
+                        record.name,
+                        React.createElement(
+                            "span",
+                            { className: "mdc-list-item__text__secondary" },
+                            record.description
+                        )
+                    ),
+                    React.createElement(
+                        "span",
+                        { className: "mdc-list-item__end-detail multiple-end-detail" },
+                        React.createElement(
+                            "a",
+                            { href: "#", className: "material-icons", "aria-label": "View more information", title: "More info" },
+                            "info"
+                        ),
+                        React.createElement(
+                            "a",
+                            { href: "#", className: "material-icons", "aria-label": "Edit", title: "Edit" },
+                            "edit"
+                        ),
+                        React.createElement(
+                            "a",
+                            { href: "#", className: "material-icons", "aria-label": "Delete", title: "Delete" },
+                            "delete"
+                        )
+                    )
                 );
             }
         }]);
@@ -37,4 +71,11 @@ define(["react", "reactDOM", "./data-table-column"], function (React, ReactDOM, 
         return DataTableRow;
     }(React.Component);
 });
+
+//<tr>
+//    {fieldList.map((field, index) =>
+//        <DataTableColumn key={field.name} record={record} field={field.name} isFirstColumn={index == 0} />
+
+//    )}
+//</tr>
 //# sourceMappingURL=data-table-row.js.map

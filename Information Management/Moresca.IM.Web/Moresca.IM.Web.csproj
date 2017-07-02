@@ -224,24 +224,13 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\app.css" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="gulpfile.js" />
     <Content Include="Scripts\app\app.jsx" />
     <Content Include="Scripts\app\components\buttons\button.jsx" />
@@ -260,8 +249,6 @@
     <Content Include="Scripts\babel\src\babili.js" />
     <Content Include="Scripts\babel\src\index.js" />
     <Content Include="Scripts\babel\src\transformScriptTags.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="bower.json" />
     <Content Include=".bowerrc" />
     <Content Include=".babelrc" />
@@ -297,6 +284,10 @@
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\material-components-web\material-components-web.css" />
+    <Content Include="Scripts\material-components-web\material-components-web.js" />
+    <Content Include="Scripts\material-components-web\material-components-web.min.css" />
+    <Content Include="Scripts\material-components-web\material-components-web.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\react-dom\react-dom-server.js" />
     <Content Include="Scripts\react-dom\react-dom-server.min.js" />

@@ -22,14 +22,14 @@ define(["react", "reactDOM"], function (React, ReactDOM) {
             key: "render",
             value: function render() {
                 var text = this.props.text;
-                var buttonType = this.props.buttonType;
                 var action = this.props.action;
+                var additionalClass = this.props.additionalClass;
 
-                var buttonTypeClassName = buttonType != null ? "btn btn-" + buttonType : "btn";
+                var cssClass = "mdc-button mdc-button--raised mdc-button--primary" + (additionalClass == undefined ? "" : " " + additionalClass);
 
                 return React.createElement(
-                    "a",
-                    { className: buttonTypeClassName, href: "#", role: "button", onClick: action },
+                    "button",
+                    { className: cssClass, "data-mdc-auto-init": "MDCRipple", onClick: action },
                     text
                 );
             }

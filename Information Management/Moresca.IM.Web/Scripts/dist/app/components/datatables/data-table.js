@@ -22,27 +22,11 @@ define(["react", "reactDOM", "./data-table-row-list"], function (React, ReactDOM
             key: "render",
             value: function render() {
                 var recordList = this.props.recordList;
-                var fieldList = this.props.fieldList;
 
                 return React.createElement(
-                    "table",
-                    { className: "table table-hover" },
-                    React.createElement(
-                        "thead",
-                        null,
-                        React.createElement(
-                            "tr",
-                            null,
-                            fieldList.map(function (field) {
-                                return React.createElement(
-                                    "th",
-                                    { key: field.name },
-                                    field.value
-                                );
-                            })
-                        )
-                    ),
-                    React.createElement(DataTableRowList, { recordList: recordList, fieldList: fieldList })
+                    "ul",
+                    { className: "mdc-list" },
+                    React.createElement(DataTableRowList, { recordList: recordList })
                 );
             }
         }]);
@@ -50,4 +34,15 @@ define(["react", "reactDOM", "./data-table-row-list"], function (React, ReactDOM
         return DataTable;
     }(React.Component);
 });
+
+//<table className="table table-hover">
+//    <thead>
+//        <tr>
+//            {fieldList.map((field) =>
+//                <th key={field.name}>{field.value}</th>
+//            )}
+//        </tr>
+//    </thead>
+//    <DataTableRowList recordList={recordList} fieldList={fieldList} />
+//</table>
 //# sourceMappingURL=data-table.js.map

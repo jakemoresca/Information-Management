@@ -11,20 +11,23 @@ function (React, ReactDOM, DataTableRowList)
         render()
         {
             const recordList = this.props.recordList;
-            const fieldList = this.props.fieldList;
 
             return (
-                <table className="table table-hover">
-                    <thead>
-                        <tr>
-                            {fieldList.map((field) =>
-                                <th key={field.name}>{field.value}</th>
-                            )}
-                        </tr>
-                    </thead>
-                    <DataTableRowList recordList={recordList} fieldList={fieldList} />
-                </table>
+                <ul className="mdc-list">
+                    <DataTableRowList recordList={recordList} />
+                </ul>
             );
         }
     }
 });
+
+//<table className="table table-hover">
+//    <thead>
+//        <tr>
+//            {fieldList.map((field) =>
+//                <th key={field.name}>{field.value}</th>
+//            )}
+//        </tr>
+//    </thead>
+//    <DataTableRowList recordList={recordList} fieldList={fieldList} />
+//</table>

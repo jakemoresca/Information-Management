@@ -12,9 +12,9 @@ function (React, ReactDOM, DataTable, Button)
             {
                 recordList:
                 [
-                    { id: 1, firstName: "Mark", lastName: "Otto", userName: "@mdo" },
-                    { id: 2, firstName: "Jacob", lastName: "Thornton", userName: "@fat" },
-                    { id: 3, firstName: "Larry", lastName: "the Bird", userName: "@twitter" }
+                    { id: 1, name: "Mark", description: "July 2, 2017 9:46 AM" },
+                    { id: 2, name: "Jacob", description: "July 2, 2017 9:46 AM" },
+                    { id: 3, name: "Larry", description: "July 2, 2017 9:46 AM" }
                 ],
 
                 fieldList:
@@ -50,16 +50,28 @@ function (React, ReactDOM, DataTable, Button)
             const fieldList = this.state.fieldList;
 
             return (
-                <div className="card">
-                    <div className="card-block">
-                        <h4 className="card-title">Card title</h4>
-                        <Button text="Add" buttonType="outline-primary" action={this.handleAdd} />
-                    </div>
-                    <div className="card-block">
+                <div className="mdc-card demo-card">
+                    <section className="mdc-card__primary">
+                        <h1 className="mdc-card__title mdc-card__title--large">Jobs
+                            <Button text="Add" action={this.handleAdd} additionalClass="float-right" />
+                        </h1>
                         <DataTable recordList={recordList} fieldList={fieldList} />
-                    </div>
+                    </section>
+                    <section className="mdc-card__actions">
+                    </section>
                 </div>
             );
         }
     }
 });
+
+
+//<div className="card">
+//    <div className="card-block">
+//        <h4 className="card-title">Card title</h4>
+//        
+//    </div>
+//    <div className="card-block">
+//        <DataTable recordList={recordList} fieldList={fieldList} />
+//    </div>
+//</div>

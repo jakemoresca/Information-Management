@@ -22,13 +22,12 @@ define(["react", "reactDOM", "./data-table-row"], function (React, ReactDOM, Dat
             key: "render",
             value: function render() {
                 var recordList = this.props.recordList;
-                var fieldList = this.props.fieldList;
 
                 return React.createElement(
-                    "tbody",
+                    "div",
                     null,
                     recordList.map(function (record) {
-                        return React.createElement(DataTableRow, { key: record.id, record: record, fieldList: fieldList });
+                        return React.createElement(DataTableRow, { key: record.id, record: record });
                     })
                 );
             }

@@ -21,7 +21,8 @@ var npm = {
     "react-router": "react-router/umd/**/*.js",
     "react-router-dom": "react-router-dom/umd/**/*.js",
     "requirejs": "requirejs/**/*.js",
-    "requirejs-babel": "requirejs-babel/**/*.js"
+    "requirejs-babel": "requirejs-babel/**/*.js",
+    "material-components-web": "material-components-web/dist/**/*.*"
 }
 
 gulp.task("copy", function ()

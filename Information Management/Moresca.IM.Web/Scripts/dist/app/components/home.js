@@ -20,7 +20,7 @@ define(["react", "reactDOM", "./datatables/data-table", "./buttons/button"], fun
             _this.handleAdd = _this.handleAdd.bind(_this);
 
             _this.state = {
-                recordList: [{ id: 1, firstName: "Mark", lastName: "Otto", userName: "@mdo" }, { id: 2, firstName: "Jacob", lastName: "Thornton", userName: "@fat" }, { id: 3, firstName: "Larry", lastName: "the Bird", userName: "@twitter" }],
+                recordList: [{ id: 1, name: "Mark", description: "July 2, 2017 9:46 AM" }, { id: 2, name: "Jacob", description: "July 2, 2017 9:46 AM" }, { id: 3, name: "Larry", description: "July 2, 2017 9:46 AM" }],
 
                 fieldList: [{ name: "id", value: "Id" }, { name: "firstName", value: "First Name" }, { name: "lastName", value: "Last Name" }, { name: "userName", value: "Username" }]
             };
@@ -53,22 +53,29 @@ define(["react", "reactDOM", "./datatables/data-table", "./buttons/button"], fun
 
                 return React.createElement(
                     "div",
-                    { className: "card" },
+                    { className: "mdc-card demo-card" },
                     React.createElement(
-                        "div",
-                        { className: "card-block" },
+                        "section",
+                        { className: "mdc-card__primary" },
                         React.createElement(
-                            "h4",
-                            { className: "card-title" },
-                            "Card title"
+                            "h1",
+                            { className: "mdc-card__title mdc-card__title--large" },
+                            "Jobs",
+                            React.createElement(
+                                "label",
+                                { className: "mdc-textfield float-right" },
+                                React.createElement("input", { type: "text", className: "mdc-textfield__input" }),
+                                React.createElement(
+                                    "span",
+                                    { className: "mdc-textfield__label" },
+                                    "Search"
+                                )
+                            ),
+                            React.createElement(Button, { text: "Add", action: this.handleAdd, additionalClass: "float-right" })
                         ),
-                        React.createElement(Button, { text: "Add", buttonType: "outline-primary", action: this.handleAdd })
-                    ),
-                    React.createElement(
-                        "div",
-                        { className: "card-block" },
                         React.createElement(DataTable, { recordList: recordList, fieldList: fieldList })
-                    )
+                    ),
+                    React.createElement("section", { className: "mdc-card__actions" })
                 );
             }
         }]);
@@ -76,4 +83,14 @@ define(["react", "reactDOM", "./datatables/data-table", "./buttons/button"], fun
         return Home;
     }(React.Component);
 });
+
+//<div className="card">
+//    <div className="card-block">
+//        <h4 className="card-title">Card title</h4>
+//        
+//    </div>
+//    <div className="card-block">
+//        <DataTable recordList={recordList} fieldList={fieldList} />
+//    </div>
+//</div>
 //# sourceMappingURL=home.js.map
