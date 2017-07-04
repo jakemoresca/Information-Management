@@ -1,87 +1,109 @@
-"use strict";
+define(["react", "reactDOM", "./datatables/data-table", "./buttons/button", "./dialogs/dialog"], function (React, ReactDOM, DataTable, Button, Dialog) {
+    return class Home extends React.Component {
+        constructor(props) {
+            super(props);
+            this.handleAdd = this.handleAdd.bind(this);
+            this.handleJobNameChange = this.handleJobNameChange.bind(this);
+            this.addNewJob = this.addNewJob.bind(this);
+            this.closeJobDialog = this.closeJobDialog.bind(this);
+            this.dialogId = "homeDialog";
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-define(["react", "reactDOM", "./datatables/data-table", "./buttons/button"], function (React, ReactDOM, DataTable, Button) {
-    return function (_React$Component) {
-        _inherits(Home, _React$Component);
-
-        function Home(props) {
-            _classCallCheck(this, Home);
-
-            var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
-
-            _this.handleAdd = _this.handleAdd.bind(_this);
-
-            _this.state = {
+            this.state = {
                 recordList: [{ id: 1, name: "Mark", description: "July 2, 2017 9:46 AM" }, { id: 2, name: "Jacob", description: "July 2, 2017 9:46 AM" }, { id: 3, name: "Larry", description: "July 2, 2017 9:46 AM" }],
 
-                fieldList: [{ name: "id", value: "Id" }, { name: "firstName", value: "First Name" }, { name: "lastName", value: "Last Name" }, { name: "userName", value: "Username" }]
+                fieldList: [{ name: "id", value: "Id" }, { name: "firstName", value: "First Name" }, { name: "lastName", value: "Last Name" }, { name: "userName", value: "Username" }],
+
+                jobNameToAdd: ""
             };
-            return _this;
         }
 
-        _createClass(Home, [{
-            key: "handleAdd",
-            value: function handleAdd(e) {
-                e.preventDefault();
+        componentDidMount() {
+            this.dialogComponent = new mdc.dialog.MDCDialog(document.querySelector("#" + this.dialogId));
+        }
 
-                var newRecord = {
-                    id: 4,
-                    firstName: "Mark2",
-                    lastName: "Otto2",
-                    userName: "@mdo2"
-                };
+        handleAdd(e) {
+            e.preventDefault();
 
-                this.setState(function (prevState) {
-                    return {
-                        recordList: prevState.recordList.concat(newRecord)
-                    };
-                });
-            }
-        }, {
-            key: "render",
-            value: function render() {
-                var recordList = this.state.recordList;
-                var fieldList = this.state.fieldList;
+            this.dialogComponent.show();
+            //var newRecord =
+            //{
+            //    id: 4,
+            //    firstName: "Mark2",
+            //    lastName: "Otto2",
+            //    userName: "@mdo2"
+            //};
 
-                return React.createElement(
-                    "div",
-                    { className: "mdc-card demo-card" },
+            //this.setState((prevState) => ({
+            //    recordList: prevState.recordList.concat(newRecord)
+            //}));
+        }
+
+        handleJobNameChange(e) {
+            e.preventDefault();
+            this.setState({ jobNameToAdd: e.target.value });
+        }
+
+        addNewJob(e) {
+            e.preventDefault();
+
+            var newRecord = {
+                id: 10,
+                name: this.state.jobNameToAdd,
+                description: "July 2, 2017 9:46 AM"
+            };
+
+            this.setState(prevState => ({
+                recordList: prevState.recordList.concat(newRecord)
+            }));
+        }
+
+        closeJobDialog(e) {
+            e.preventDefault();
+            this.dialogComponent.close();
+        }
+
+        render() {
+            const recordList = this.state.recordList;
+            const fieldList = this.state.fieldList;
+            const jobNameToAdd = this.state.jobNameToAdd;
+
+            return React.createElement(
+                "div",
+                { className: "mdc-card demo-card" },
+                React.createElement(
+                    "section",
+                    { className: "mdc-card__primary" },
                     React.createElement(
-                        "section",
-                        { className: "mdc-card__primary" },
+                        "h1",
+                        { className: "mdc-card__title mdc-card__title--large" },
+                        "Jobs",
+                        React.createElement(Button, { text: "Add", action: this.handleAdd, additionalClass: "float-right" }),
                         React.createElement(
-                            "h1",
-                            { className: "mdc-card__title mdc-card__title--large" },
-                            "Jobs",
+                            Dialog,
+                            { dialogId: this.dialogId, title: "Add Job", acceptAction: this.addNewJob, declineAction: this.closeJobDialog,
+                                acceptText: "Add", declineText: "Cancel" },
                             React.createElement(
-                                "label",
-                                { className: "mdc-textfield float-right" },
-                                React.createElement("input", { type: "text", className: "mdc-textfield__input" }),
+                                "div",
+                                { className: "mdc-form-field mdc-form-field--align-end" },
                                 React.createElement(
-                                    "span",
-                                    { className: "mdc-textfield__label" },
-                                    "Search"
+                                    "label",
+                                    { className: "mdc-textfield" },
+                                    React.createElement("input", { type: "text", className: "mdc-textfield__input", value: jobNameToAdd, onChange: this.handleJobNameChange }),
+                                    React.createElement(
+                                        "span",
+                                        { className: "mdc-textfield__label" },
+                                        "Job Name"
+                                    )
                                 )
-                            ),
-                            React.createElement(Button, { text: "Add", action: this.handleAdd, additionalClass: "float-right" })
-                        ),
-                        React.createElement(DataTable, { recordList: recordList, fieldList: fieldList })
+                            )
+                        )
                     ),
-                    React.createElement("section", { className: "mdc-card__actions" })
-                );
-            }
-        }]);
-
-        return Home;
-    }(React.Component);
+                    React.createElement(DataTable, { recordList: recordList, fieldList: fieldList })
+                ),
+                React.createElement("section", { className: "mdc-card__actions" })
+            );
+        }
+    };
 });
 
 //<div className="card">

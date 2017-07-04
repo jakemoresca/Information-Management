@@ -48,7 +48,7 @@ gulp.task('build-script', function ()
     return gulp.src(src)
         .pipe(sourcemaps.init())
         .pipe(babel({
-            presets: ['react', 'es2015']
+            presets: ['react', 'es2016']
         }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./Scripts/dist/app'));

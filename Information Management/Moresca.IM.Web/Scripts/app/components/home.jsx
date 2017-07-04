@@ -1,5 +1,5 @@
-﻿define(["react", "reactDOM", "./datatables/data-table", "./buttons/button"],
-function (React, ReactDOM, DataTable, Button)
+﻿define(["react", "reactDOM", "./datatables/data-table", "./buttons/button", "./dialogs/dialog"],
+function (React, ReactDOM, DataTable, Button, Dialog)
 {
     return class Home extends React.Component
     {
@@ -7,6 +7,10 @@ function (React, ReactDOM, DataTable, Button)
         {
             super(props);
             this.handleAdd = this.handleAdd.bind(this);
+            this.handleJobNameChange = this.handleJobNameChange.bind(this);
+            this.addNewJob = this.addNewJob.bind(this);
+            this.closeJobDialog = this.closeJobDialog.bind(this);
+            this.dialogId = "homeDialog";
 
             this.state =
             {
@@ -23,20 +27,50 @@ function (React, ReactDOM, DataTable, Button)
                     { name: "firstName", value: "First Name" },
                     { name: "lastName", value: "Last Name" },
                     { name: "userName", value: "Username" }
-                ]
+                ],
+
+                jobNameToAdd: ""
             };
+        }
+
+        componentDidMount()
+        {
+            this.dialogComponent = new mdc.dialog.MDCDialog(document.querySelector("#" + this.dialogId));
         }
 
         handleAdd(e)
         {
             e.preventDefault();
 
+            this.dialogComponent.show();
+            //var newRecord =
+            //{
+            //    id: 4,
+            //    firstName: "Mark2",
+            //    lastName: "Otto2",
+            //    userName: "@mdo2"
+            //};
+
+            //this.setState((prevState) => ({
+            //    recordList: prevState.recordList.concat(newRecord)
+            //}));
+        }
+
+        handleJobNameChange(e)
+        {
+            e.preventDefault();
+            this.setState({ jobNameToAdd: e.target.value });
+        }
+
+        addNewJob(e)
+        {
+            e.preventDefault();
+
             var newRecord =
             {
-                id: 4,
-                firstName: "Mark2",
-                lastName: "Otto2",
-                userName: "@mdo2"
+                id: 10,
+                name: this.state.jobNameToAdd,
+                description: "July 2, 2017 9:46 AM"
             };
 
             this.setState((prevState) => ({
@@ -44,16 +78,32 @@ function (React, ReactDOM, DataTable, Button)
             }));
         }
 
+        closeJobDialog(e)
+        {
+            e.preventDefault();
+            this.dialogComponent.close();
+        }
+
         render()
         {
             const recordList = this.state.recordList;
             const fieldList = this.state.fieldList;
+            const jobNameToAdd = this.state.jobNameToAdd;
 
             return (
                 <div className="mdc-card demo-card">
                     <section className="mdc-card__primary">
                         <h1 className="mdc-card__title mdc-card__title--large">Jobs
                             <Button text="Add" action={this.handleAdd} additionalClass="float-right" />
+                            <Dialog dialogId={this.dialogId} title="Add Job" acceptAction={this.addNewJob} declineAction={this.closeJobDialog}
+                                acceptText="Add" declineText="Cancel">
+                                <div className="mdc-form-field mdc-form-field--align-end">
+                                    <label className="mdc-textfield">
+                                        <input type="text" className="mdc-textfield__input" value={jobNameToAdd} onChange={this.handleJobNameChange} />
+                                        <span className="mdc-textfield__label">Job Name</span>
+                                    </label>
+                                </div>
+                            </Dialog>
                         </h1>
                         <DataTable recordList={recordList} fieldList={fieldList} />
                     </section>

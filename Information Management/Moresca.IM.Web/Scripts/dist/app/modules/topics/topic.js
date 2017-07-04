@@ -1,18 +1,13 @@
-"use strict";
-
 define(["react", "reactDOM"], function (React, ReactDOM) {
-    var Topic = function Topic(_ref) {
-        var match = _ref.match;
-        return React.createElement(
-            "div",
+    var Topic = ({ match }) => React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "h3",
             null,
-            React.createElement(
-                "h3",
-                null,
-                match.params.topicId
-            )
-        );
-    };
+            match.params.topicId
+        )
+    );
 
     return Topic;
 });
