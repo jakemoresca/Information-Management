@@ -238,6 +238,7 @@
     <Content Include="Scripts\app\components\datatables\data-table-row.jsx" />
     <Content Include="Scripts\app\components\datatables\data-table.jsx" />
     <Content Include="Scripts\app\components\datatables\data-table-row-list.jsx" />
+    <Content Include="Scripts\app\components\dialogs\dialog.jsx" />
     <Content Include="Scripts\app\components\footer.jsx" />
     <Content Include="Scripts\app\components\home.jsx" />
     <Content Include="Scripts\app\modules\about\about.jsx" />
@@ -261,6 +262,7 @@
     <Content Include="Scripts\dist\app\components\datatables\data-table.js" />
     <Content Include="Scripts\dist\app\components\datatables\datatable.js" />
     <Content Include="Scripts\dist\app\components\datatables\datatablerow.js" />
+    <Content Include="Scripts\dist\app\components\dialogs\dialog.js" />
     <Content Include="Scripts\dist\app\components\footer.js.map" />
     <Content Include="Scripts\dist\app\components\home.js.map" />
     <Content Include="Scripts\dist\app\modules\about\about.js.map" />
@@ -273,6 +275,7 @@
     <Content Include="Scripts\dist\app\components\datatables\data-table.js.map" />
     <Content Include="Scripts\dist\app\components\datatables\data-table-column.js.map" />
     <Content Include="Scripts\dist\app\components\buttons\button.js.map" />
+    <Content Include="Scripts\dist\app\components\dialogs\dialog.js.map" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\dist\app\app.js" />
     <Content Include="Scripts\dist\app\components\footer.js" />
