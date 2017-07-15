@@ -19,23 +19,20 @@ define(["react", "reactDOM", "./datatables/data-table", "./buttons/button", "./d
 
         componentDidMount() {
             this.dialogComponent = new mdc.dialog.MDCDialog(document.querySelector("#" + this.dialogId));
+
+            this.dialogComponent.listen("MDCDialog:accept", function () {
+                this.addNewJob();
+            }.bind(this));
+
+            this.dialogComponent.listen("MDCDialog:cancel", function () {
+                this.closeJobDialog();
+            }.bind(this));
         }
 
         handleAdd(e) {
             e.preventDefault();
 
             this.dialogComponent.show();
-            //var newRecord =
-            //{
-            //    id: 4,
-            //    firstName: "Mark2",
-            //    lastName: "Otto2",
-            //    userName: "@mdo2"
-            //};
-
-            //this.setState((prevState) => ({
-            //    recordList: prevState.recordList.concat(newRecord)
-            //}));
         }
 
         handleJobNameChange(e) {
@@ -44,8 +41,6 @@ define(["react", "reactDOM", "./datatables/data-table", "./buttons/button", "./d
         }
 
         addNewJob(e) {
-            e.preventDefault();
-
             var newRecord = {
                 id: 10,
                 name: this.state.jobNameToAdd,
@@ -58,7 +53,6 @@ define(["react", "reactDOM", "./datatables/data-table", "./buttons/button", "./d
         }
 
         closeJobDialog(e) {
-            e.preventDefault();
             this.dialogComponent.close();
         }
 

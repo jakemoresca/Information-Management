@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using Moresca.IM.Web.Models;
 using Moresca.IM.Web.Providers;
+using Moresca.IM.Web.Daos;
 
 namespace Moresca.IM.Web
 {
@@ -38,7 +39,7 @@ namespace Moresca.IM.Web
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(IMDbContenxt.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
