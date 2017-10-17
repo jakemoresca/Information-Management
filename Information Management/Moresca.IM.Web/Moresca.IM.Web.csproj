@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -233,6 +234,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707150906569_InitCreate.cs" />
+    <Compile Include="Migrations\201707150906569_InitCreate.Designer.cs">
+      <DependentUpon>201707150906569_InitCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -315,6 +320,9 @@
     <Content Include="Scripts\material-components-web\material-components-web.min.css" />
     <Content Include="Scripts\material-components-web\material-components-web.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\react-addons-update\index.js" />
+    <Content Include="Scripts\react-addons-update\react-addons-update.js" />
+    <Content Include="Scripts\react-addons-update\react-addons-update.min.js" />
     <Content Include="Scripts\react-dom\react-dom-server.js" />
     <Content Include="Scripts\react-dom\react-dom-server.min.js" />
     <Content Include="Scripts\react-dom\react-dom.js" />
@@ -369,6 +377,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201707150906569_InitCreate.resx">
+      <DependentUpon>201707150906569_InitCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

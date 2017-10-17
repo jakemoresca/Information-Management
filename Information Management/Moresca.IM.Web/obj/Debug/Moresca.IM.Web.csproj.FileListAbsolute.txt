@@ -241,3 +241,6 @@ C:\Projects\Information Management\Information Management\Moresca.IM.Web\bin\ko\
 C:\Projects\Information Management\Information Management\Moresca.IM.Web\bin\ru\System.Spatial.resources.dll
 C:\Projects\Information Management\Information Management\Moresca.IM.Web\bin\zh-Hans\System.Spatial.resources.dll
 C:\Projects\Information Management\Information Management\Moresca.IM.Web\bin\zh-Hant\System.Spatial.resources.dll
+C:\Projects\Information Management\Information Management\Moresca.IM.Web\obj\Debug\Moresca.IM.Web.Migrations.InitCreate.resources
+C:\Projects\Information Management\Information Management\Moresca.IM.Web\obj\Debug\Moresca.IM.Web.csproj.GenerateResource.Cache
+C:\Projects\Information Management\Information Management\Moresca.IM.Web\obj\Debug\Moresca.IM.Web.csproj.CoreCompileInputs.cache

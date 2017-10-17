@@ -6,6 +6,8 @@ define(["react", "reactDOM"], function (React, ReactDOM) {
 
         render() {
             const record = this.props.record;
+            const deleteAction = this.props.deleteAction;
+            const editAction = this.props.editAction;
 
             return React.createElement(
                 "a",
@@ -34,17 +36,12 @@ define(["react", "reactDOM"], function (React, ReactDOM) {
                     { className: "mdc-list-item__end-detail multiple-end-detail" },
                     React.createElement(
                         "a",
-                        { href: "#", className: "material-icons", "aria-label": "View more information", title: "More info" },
-                        "info"
-                    ),
-                    React.createElement(
-                        "a",
-                        { href: "#", className: "material-icons", "aria-label": "Edit", title: "Edit" },
+                        { href: "#", className: "material-icons", "aria-label": "Edit", title: "Edit", onClick: () => editAction(record) },
                         "edit"
                     ),
                     React.createElement(
                         "a",
-                        { href: "#", className: "material-icons", "aria-label": "Delete", title: "Delete" },
+                        { href: "#", className: "material-icons", "aria-label": "Delete", title: "Delete", onClick: () => deleteAction(record) },
                         "delete"
                     )
                 )

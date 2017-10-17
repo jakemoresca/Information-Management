@@ -11,10 +11,12 @@ function (React, ReactDOM, DataTableRowList)
         render()
         {
             const recordList = this.props.recordList;
+            const deleteAction = this.props.deleteAction;
+            const editAction = this.props.editAction;
 
             return (
                 <ul className="mdc-list">
-                    <DataTableRowList recordList={recordList} />
+                    <DataTableRowList recordList={recordList} deleteAction={deleteAction} editAction={editAction} />
                 </ul>
             );
         }

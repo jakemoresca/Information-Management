@@ -3,13 +3,14 @@ using System.Data.Entity;
 
 namespace Moresca.IM.Web.Daos
 {
-    public class IMDbContenxt : DbContext
+    public class IMDbContext : DbContext
     {
+        
         public DbSet<JobDto> Jobs { get; set; }
 
-        public static IMDbContenxt Create()
+        public static IMDbContext Create()
         {
-            return new IMDbContenxt();
+            return new IMDbContext();
         }
     }
 }

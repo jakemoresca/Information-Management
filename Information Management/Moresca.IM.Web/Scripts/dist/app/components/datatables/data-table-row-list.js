@@ -6,11 +6,13 @@ define(["react", "reactDOM", "./data-table-row"], function (React, ReactDOM, Dat
 
         render() {
             const recordList = this.props.recordList;
+            const deleteAction = this.props.deleteAction;
+            const editAction = this.props.editAction;
 
             return React.createElement(
                 "div",
                 null,
-                recordList.map(record => React.createElement(DataTableRow, { key: record.id, record: record }))
+                recordList.map(record => React.createElement(DataTableRow, { key: record.id, record: record, deleteAction: deleteAction, editAction: editAction }))
             );
         }
     };

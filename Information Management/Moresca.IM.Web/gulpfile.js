@@ -20,6 +20,7 @@ var npm = {
     "react-dom": "react-dom/dist/**/*.js",
     "react-router": "react-router/umd/**/*.js",
     "react-router-dom": "react-router-dom/umd/**/*.js",
+    "react-addons-update": "react-addons-update/**/*.js",
     "requirejs": "requirejs/**/*.js",
     "requirejs-babel": "requirejs-babel/**/*.js",
     "material-components-web": "material-components-web/dist/**/*.*"

@@ -11,6 +11,8 @@ function (React, ReactDOM)
         render()
         {
             const record = this.props.record;
+            const deleteAction = this.props.deleteAction;
+            const editAction = this.props.editAction;
 
             return (
                 <a href="#" className="mdc-list-item" data-mdc-auto-init="MDCRipple">
@@ -22,13 +24,10 @@ function (React, ReactDOM)
                         <span className="mdc-list-item__text__secondary">{record.description}</span>
                     </span>
                     <span className="mdc-list-item__end-detail multiple-end-detail">
-                        <a href="#" className="material-icons" aria-label="View more information" title="More info">
-                            info
-                        </a>
-                        <a href="#" className="material-icons" aria-label="Edit" title="Edit">
+                        <a href="#" className="material-icons" aria-label="Edit" title="Edit" onClick={() => editAction(record)}>
                             edit
                         </a>
-                        <a href="#" className="material-icons" aria-label="Delete" title="Delete">
+                        <a href="#" className="material-icons" aria-label="Delete" title="Delete" onClick={() => deleteAction(record)}>
                             delete
                         </a>
                     </span>

@@ -6,11 +6,13 @@ define(["react", "reactDOM", "./data-table-row-list"], function (React, ReactDOM
 
         render() {
             const recordList = this.props.recordList;
+            const deleteAction = this.props.deleteAction;
+            const editAction = this.props.editAction;
 
             return React.createElement(
                 "ul",
                 { className: "mdc-list" },
-                React.createElement(DataTableRowList, { recordList: recordList })
+                React.createElement(DataTableRowList, { recordList: recordList, deleteAction: deleteAction, editAction: editAction })
             );
         }
     };

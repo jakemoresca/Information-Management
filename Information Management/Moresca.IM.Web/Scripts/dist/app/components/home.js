@@ -1,30 +1,46 @@
-define(["react", "reactDOM", "./datatables/data-table", "./buttons/button", "./dialogs/dialog"], function (React, ReactDOM, DataTable, Button, Dialog) {
+define(["react", "reactDOM", "react-addons-update", "./datatables/data-table", "./buttons/button", "./dialogs/dialog"], function (React, ReactDOM, update, DataTable, Button, Dialog) {
     return class Home extends React.Component {
         constructor(props) {
             super(props);
             this.handleAdd = this.handleAdd.bind(this);
+            this.handleEdit = this.handleEdit.bind(this);
+            this.handleDelete = this.handleDelete.bind(this);
             this.handleJobNameChange = this.handleJobNameChange.bind(this);
             this.addNewJob = this.addNewJob.bind(this);
+            this.updateJob = this.updateJob.bind(this);
             this.closeJobDialog = this.closeJobDialog.bind(this);
-            this.dialogId = "homeDialog";
+            this.addDialogId = "homeAddDialog";
+            this.editDialogId = "homeEditDialog";
 
             this.state = {
                 recordList: [{ id: 1, name: "Mark", description: "July 2, 2017 9:46 AM" }, { id: 2, name: "Jacob", description: "July 2, 2017 9:46 AM" }, { id: 3, name: "Larry", description: "July 2, 2017 9:46 AM" }],
 
                 fieldList: [{ name: "id", value: "Id" }, { name: "firstName", value: "First Name" }, { name: "lastName", value: "Last Name" }, { name: "userName", value: "Username" }],
 
-                jobNameToAdd: ""
+                jobToUpdate: null,
+                jobNameToAdd: "",
+                jobNameToUpdate: ""
             };
         }
 
         componentDidMount() {
-            this.dialogComponent = new mdc.dialog.MDCDialog(document.querySelector("#" + this.dialogId));
+            this.addDialogComponent = new mdc.dialog.MDCDialog(document.querySelector("#" + this.addDialogId));
 
-            this.dialogComponent.listen("MDCDialog:accept", function () {
+            this.addDialogComponent.listen("MDCDialog:accept", function () {
                 this.addNewJob();
             }.bind(this));
 
-            this.dialogComponent.listen("MDCDialog:cancel", function () {
+            this.addDialogComponent.listen("MDCDialog:cancel", function () {
+                this.closeJobDialog();
+            }.bind(this));
+
+            this.editDialogComponent = new mdc.dialog.MDCDialog(document.querySelector("#" + this.editDialogId));
+
+            this.editDialogComponent.listen("MDCDialog:accept", function () {
+                this.updateJob();
+            }.bind(this));
+
+            this.editDialogComponent.listen("MDCDialog:cancel", function () {
                 this.closeJobDialog();
             }.bind(this));
         }
@@ -32,12 +48,32 @@ define(["react", "reactDOM", "./datatables/data-table", "./buttons/button", "./d
         handleAdd(e) {
             e.preventDefault();
 
-            this.dialogComponent.show();
+            this.addDialogComponent.show();
+        }
+
+        handleEdit(record) {
+            this.setState({ jobToUpdate: record, jobNameToUpdate: record.name });
+
+            this.editDialogComponent.show();
+        }
+
+        handleDelete(record) {
+            var confirmAction = confirm("Are you sure do you want to delete this Job?");
+
+            if (confirmAction) {
+                const index = this.state.recordList.indexOf(record);
+
+                if (index !== -1) {
+                    this.setState(prevState => ({
+                        recordList: prevState.recordList.filter((_, i) => i !== index)
+                    }));
+                }
+            }
         }
 
         handleJobNameChange(e) {
             e.preventDefault();
-            this.setState({ jobNameToAdd: e.target.value });
+            this.setState({ jobNameToAdd: e.target.value, jobNameToUpdate: e.target.value });
         }
 
         addNewJob(e) {
@@ -48,18 +84,44 @@ define(["react", "reactDOM", "./datatables/data-table", "./buttons/button", "./d
             };
 
             this.setState(prevState => ({
-                recordList: prevState.recordList.concat(newRecord)
+                recordList: prevState.recordList.concat(newRecord),
+                jobNameToAdd: "",
+                jobNameToUpdate: "",
+                jobToUpdate: null
             }));
         }
 
+        updateJob(e) {
+            const jobToUpdate = this.state.jobToUpdate;
+            const jobNameToUpdate = this.state.jobNameToUpdate;
+            const index = this.state.recordList.indexOf(jobToUpdate);
+
+            if (index !== -1) {
+                this.setState({
+                    recordList: update(this.state.recordList, { index: { name: { $set: jobNameToUpdate } } }),
+                    jobNameToAdd: "",
+                    jobNameToUpdate: "",
+                    jobToUpdate: null
+                });
+            }
+        }
+
         closeJobDialog(e) {
-            this.dialogComponent.close();
+            this.setState(prevState => ({
+                jobNameToAdd: "",
+                jobNameToUpdate: "",
+                jobToUpdate: null
+            }));
+
+            this.addDialogComponent.close();
+            this.editDialogComponent.close();
         }
 
         render() {
             const recordList = this.state.recordList;
             const fieldList = this.state.fieldList;
             const jobNameToAdd = this.state.jobNameToAdd;
+            const jobNameToUpdate = this.state.jobNameToUpdate;
 
             return React.createElement(
                 "div",
@@ -74,7 +136,7 @@ define(["react", "reactDOM", "./datatables/data-table", "./buttons/button", "./d
                         React.createElement(Button, { text: "Add", action: this.handleAdd, additionalClass: "float-right" }),
                         React.createElement(
                             Dialog,
-                            { dialogId: this.dialogId, title: "Add Job", acceptAction: this.addNewJob, declineAction: this.closeJobDialog,
+                            { dialogId: this.addDialogId, title: "Add Job", acceptAction: this.addNewJob, declineAction: this.closeJobDialog,
                                 acceptText: "Add", declineText: "Cancel" },
                             React.createElement(
                                 "div",
@@ -92,7 +154,26 @@ define(["react", "reactDOM", "./datatables/data-table", "./buttons/button", "./d
                             )
                         )
                     ),
-                    React.createElement(DataTable, { recordList: recordList, fieldList: fieldList })
+                    React.createElement(DataTable, { recordList: recordList, fieldList: fieldList, deleteAction: this.handleDelete, editAction: this.handleEdit }),
+                    React.createElement(
+                        Dialog,
+                        { dialogId: this.editDialogId, title: "Edit Job", acceptAction: this.updateJob, declineAction: this.closeJobDialog,
+                            acceptText: "Update", declineText: "Cancel" },
+                        React.createElement(
+                            "div",
+                            { className: "mdc-form-field mdc-form-field--align-end" },
+                            React.createElement(
+                                "label",
+                                { className: "mdc-textfield" },
+                                React.createElement("input", { type: "text", className: "mdc-textfield__input", value: jobNameToUpdate, onChange: this.handleJobNameChange }),
+                                React.createElement(
+                                    "span",
+                                    { className: "mdc-textfield__label" },
+                                    "Job Name"
+                                )
+                            )
+                        )
+                    )
                 ),
                 React.createElement("section", { className: "mdc-card__actions" })
             );

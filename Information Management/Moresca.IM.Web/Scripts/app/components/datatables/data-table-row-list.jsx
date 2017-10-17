@@ -11,11 +11,13 @@ function (React, ReactDOM, DataTableRow)
         render()
         {
             const recordList = this.props.recordList;
+            const deleteAction = this.props.deleteAction;
+            const editAction = this.props.editAction;
 
             return (
                 <div>
                     {recordList.map((record) =>
-                        <DataTableRow key={record.id} record={record} />
+                        <DataTableRow key={record.id} record={record} deleteAction={deleteAction} editAction={editAction} />
                     )}
                 </div>
             );

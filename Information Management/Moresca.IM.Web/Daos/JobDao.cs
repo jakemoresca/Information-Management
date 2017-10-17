@@ -7,11 +7,11 @@ namespace Moresca.IM.Web.Daos
 {
     public class JobDao : IJobDao
     {
-        private IMDbContenxt _database;
+        private IMDbContext _database;
 
         public JobDao()
         {
-            _database = new IMDbContenxt();
+            _database = new IMDbContext();
         }
 
         public void Delete(Guid jobId)

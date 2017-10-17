@@ -1,18 +1,15 @@
+using System.Data.Entity.Migrations;
+
 namespace Moresca.IM.Web.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<Moresca.IM.Web.Daos.IMDbContenxt>
+    internal sealed class Configuration : DbMigrationsConfiguration<Daos.IMDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Moresca.IM.Web.Daos.IMDbContenxt context)
+        protected override void Seed(Daos.IMDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
